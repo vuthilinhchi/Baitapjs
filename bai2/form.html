@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./form.css">
+    <title>Validater</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="main">
+
+            <form action=""method="POST" class="form" id="form-1">
+
+                <h1 class="heading">ĐĂNG KÝ</h2>
+
+                    <hr>
+
+                    <div class="form-group">
+                        <label for="fullname" class="form-label"><b>Tên đầy đủ</b></label>
+                        <input id="fullname" name="fullname" type="text" placeholder="VD: Vũ Thị Linh Chi">
+                        <span class="form-message" style="color:red"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email" class="form-label"><b>Email</b></label>
+                        <input id="email" name="email" type="text" placeholder="VD: email@domain.com">
+                        <span class="form-message" style="color:red"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password" class="form-label"><b>Mật Khẩu</b></label>
+                        <input id="password" name="password" type="password" placeholder="Nhập mật khẩu">
+                        <span class="form-message" style="color:red"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password_confirmation" class="form-label"><b>Nhập Lại Mật Khẩu</b></label>
+                        <input id="password_confirmation" name="password_confirmation" type="password"
+                            placeholder="Nhập lại mật khẩu">
+                        <span class="form-message" style="color:red"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Nhớ
+                            Đăng Nhập
+                        </label>
+                    </div>
+
+                    <button type="submit" class="form-submit signupbtn">Đăng ký</button>
+
+            </form>
+
+        </div>
+    </div>
+
+    <script src="vaidate.js"></script>
+
+    <script>
+
+        Validator({
+            errorSelector: '.form-message',
+            form: '#form-1',
+            rules: [
+                Validator.isRequired('#fullname'),
+                Validator.isEmail('#email'),
+                Validator.isPassword('#password'),
+                Validator.isConfirmed('#password_confirmation', function () {
+                    return document.querySelector('#form-1 #password').value;
+                },'Mật khẩu  nhập lại không chính xác !')
+            ],
+            onSubmit:function(data){
+            }
+        })
+
+    </script>
+
+</body>
+
+</html>
